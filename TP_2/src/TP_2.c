@@ -22,7 +22,7 @@ int main()
 {
 	setbuf(stdout, NULL);
     char seguir = 's';
-    int nextId = 1; //mi sist empieza a dar ID desde el 2000
+    int nextId = 1;
     Employee list[LEN];
     int order = -1;
     int flag = VACIO;
@@ -37,7 +37,7 @@ int main()
         switch(menu())
         {
         case 1:
-            if(pedirDatos(list, LEN, &nextId))//if(!altaPersona(list, LEN, &nextId))
+            if(pedirDatos(list, LEN, &nextId))
             {
                 printf("No se pudo realizar el alta.\n");
             }

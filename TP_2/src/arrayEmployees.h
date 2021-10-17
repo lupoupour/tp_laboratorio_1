@@ -15,7 +15,7 @@ struct
     char lastName[51];
     float salary;
     int sector;
-    int isEmpty; //1 cuando está vacío, porque 1 es sinónimo de true, 0 = tiene info
+    int isEmpty;
 } typedef Employee;
 
 #endif // ARRAYEMPLOYEES_H_INCLUDED

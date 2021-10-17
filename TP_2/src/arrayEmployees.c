@@ -30,16 +30,16 @@ int menu()
 
 }
 
-int initEmployees(Employee* list, int len) //busco lugar vacio donde pueda ir una persona
+int initEmployees(Employee* list, int len)
 {
     int todoOk = -1;
 
     if(list != NULL && len > 0)
     {
 
-        for(int i = 0; i < len; i++) //mientras i sea menor a tam,o sea mientras el indice de la lista sea menor al tamaño de la lista
+        for(int i = 0; i < len; i++)
         {
-            list[i].isEmpty = 1; //existe y está vacío, o sea disponible para cargarle info.
+            list[i].isEmpty = 1;
         }
 
         todoOk = 0;
@@ -57,7 +57,7 @@ int searchFree(Employee list[], int len)
 
         for(int i = 0; i < len; i++)
         {
-            if(list[i].isEmpty == 1)  //no es necesario poner == // es un lugar libre, entonces a ese lugar le pongo el indice de la lista correspondiente.
+            if(list[i].isEmpty == 1)
             {
                 indice = i;
                 break;
@@ -79,9 +79,9 @@ int pedirDatos(Employee list[], int len, int* pId)
     id = *pId;
     (*pId)++;
     system("cls");
-    printf("Ingrese nombre: "); //hay que hacer validaciones
+    printf("Ingrese nombre: ");
     fflush(stdin);
-    gets(name); //gets es solo para strings
+    gets(name);
 
     while(validaCadena(name))
     {
@@ -119,7 +119,7 @@ int pedirDatos(Employee list[], int len, int* pId)
 
 }
 
-void printEmployee(Employee p) //recibe la estructura ePersona y no devuelve nada, es solo para mostrar y utilizar dsp
+void printEmployee(Employee p)
 {
     printf("%d   %s   %s   %.2f   %d\n",
            p.id,
@@ -147,15 +147,15 @@ int printEmployees(Employee* list, int len)
 
         for(int i = 0; i < len; i++)
         {
-            if(!list[i].isEmpty)  //es lo mismo que lista[i].isEmpty == 0 // o sea que tiene datos
+            if(!list[i].isEmpty)
             {
-                printEmployee(list[i]); //llamo a mostrarPersona y le paso lista en el indice i
+                printEmployee(list[i]);
                 flag = 0;
             }
 
         }
 
-        if(flag == 1) //es decir que nunca entró al anterior if, o sea que no encontró nada con datos.
+        if(flag == 1)
         {
             printf("No hay personas para mostrar.\n");
         }
@@ -165,7 +165,7 @@ int printEmployees(Employee* list, int len)
     return todoOk;
 }
 
-int findEmployeeById(Employee* list, int len,int Id)//int buscarPersonaId(Employee lista[], int tam, int Id) //la creo para poder dar luego la baja
+int findEmployeeById(Employee* list, int len,int Id)
 {
     int indice = -1;
 
@@ -174,9 +174,9 @@ int findEmployeeById(Employee* list, int len,int Id)//int buscarPersonaId(Employ
 
         for(int i = 0; i < len; i++)
         {
-            if(!list[i].isEmpty && list[i].id == Id)  //o sea que la lista tiene datos y ademas el id de la lista es igual al Id que ingreso ???
+            if(!list[i].isEmpty && list[i].id == Id)
             {
-                indice = i; //indice pasa a ser el mismo que el de la lista
+                indice = i;
                 break;
             }
         }
@@ -198,7 +198,7 @@ int removeEmployee(Employee* list, int len, int Id)
         printf("Ingrese id: ");
         scanf("%d", &id);
 
-        indice = findEmployeeById(list, len, id); //decimos que nuestro indice
+        indice = findEmployeeById(list, len, id);
 
         if(indice == -1)
         {
@@ -242,7 +242,7 @@ int modifyEmployee(Employee list[], int len, int Id)
         printf("Ingrese id: ");
         scanf("%d", &id);
 
-        indice = findEmployeeById(list, len, id); //decimos que nuestro indice
+        indice = findEmployeeById(list, len, id);
 
         if(indice == -1)
         {
@@ -523,15 +523,15 @@ int validaCadena(char cadena[])
     int i = 0;
     while (cadena[i])
     {
-        // Si no es del alfabeto y no es un espacio regresamos false o 0
-        if (!isalpha(cadena[i]) && cadena[i] != ' ')// El espacio cuenta como válido, si no, simplemente quita la condición
+
+        if (!isalpha(cadena[i]) && cadena[i] != ' ')
         {
             todoOk = 1;
         }
 
         i++;
     }
-    // Si terminamos de recorrer la cadena y no encontramos errores, regresamos 1 o true
+
     return todoOk;
 }
 
@@ -599,26 +599,25 @@ int addEmployee(Employee* list, int len, int id, char name[],char lastName[],flo
 
         system("cls");
         printf("    ***Alta Empleado***    \n");
-        indice = searchFree(list, len); //digo que mi indice va a ser igual al indice del lugar libre que busco en buscarLibre
-
-        if(indice == -1) //porque -1 era que no estaba libre en buscarlibre.
+        indice = searchFree(list, len);
+        if(indice == -1)
         {
             printf("No hay lugar.\n");
         }
-        else //lo que hago si el lugar esta libre --> puedo dar de alta a la persona
+        else
         {
             Employee auxPersona;
 
             auxPersona.id = id;
-            strcpy(auxPersona.name, name); //auxPersona.name = name;
+            strcpy(auxPersona.name, name);
             strcpy(auxPersona.lastName, lastName);
             auxPersona.sector = sector;
             auxPersona.salary = salary;
 
             auxPersona.isEmpty = 0;
-            list[indice] = auxPersona; //luego de guardarme todos los valores en auxPersona, los paso a lista[indice]
+            list[indice] = auxPersona;
 
-            todoOk = 0; //cuando se pudo dar de alta
+            todoOk = 0;
         }
 
 
